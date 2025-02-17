@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yönetici | Hastane Yönetim</title>
+    <link rel="icon" href="">
+    <!-- Css -->
+    <link rel="stylesheet" href="~/assets/css/plugins/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="~/assets/css/global/admin/style.css" rel="stylesheet" />
+    @RenderSection("Css", false)
+</head>
+<body>
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap" /></svg>
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 text-light">Hastane Anasayfası</a></li>
+                    @* <li><a href="#" class="nav-link px-2 text-white">About</a></li> *@
+                </ul>
+
+                <div class="text-end">
+                    <a href="/admin/auth/logout" type="button" class="btn btn-outline-light me-2">Çıkış Yap</a>
+                    @* <button type="button" class="btn btn-primary">Doktor Girişi</button> *@
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="d-flex flex-nowrap">
+        <nav class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+            <a href="/admin/home/index" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+                <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap" /></svg>
+                <span class="fs-5 fw-semibold">Anasayfa</span>
+            </a>
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                        Branş İşlemleri
+                    </button>
+                    <div class="collapse show" id="home-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="@Url.Action("MedicalSpecialties", "Home", new { Area = "Admin" })" class="link-dark rounded">Branşlar Listesi</a></li>
+                            <li><a href="@Url.Action("AddMedicalSpecialty", "Home", new { Area = "Admin" })" class="link-dark rounded">Branş Ekle</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="true">
+                        Doktor İşlemleri
+                    </button>
+                    <div class="collapse show" id="dashboard-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="@Url.Action("Doctors", "Home", new { Area = "Admin" })" class="link-dark rounded">Doktorlar Listesi</a></li>
+                            <li><a href="@Url.Action("AddDoctor", "Home", new { Area = "Admin" })" class="link-dark rounded">Doktor Ekle</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="border-top my-3"></li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                        Hesap
+                    </button>
+                    <div class="collapse" id="account-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            @* <li><a href="#" class="link-dark rounded">Hesap Ayarları</a></li> *@
+                            <li><a href="/admin/auth/logout" class="link-dark rounded">Çıkış Yap</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        @RenderBody()
+    </main>
+    <!-- Js -->
+    <script src="~/assets/js/plugins/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/plugins/jquery.min.js"></script>
+    <script src="~/assets/js/plugins/sweetalert2.all.min.js"></script>
+    <script src="~/assets/js/global/admin/script.js"></script>
+    @RenderSection("Javascript", false)
+</body>
+</html>
