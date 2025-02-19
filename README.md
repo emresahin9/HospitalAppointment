@@ -6,6 +6,11 @@ Bu proje, .NET Core ile katmanlı mimari kullanılarak geliştirilen bir web uyg
 
 Hastane randevu sistemi, hastaların doktorlarla randevu oluşturmasına ve yönetmesine olanak tanır. Kullanıcı dostu arayüzü ve güvenli veri işleme yapısıyla, hastaneler için etkili bir randevu yönetim çözümü sunar.
 
+## Canlı Demo
+
+Projeyi canlı olarak [buradan](http://hospital-appointment.runasp.net/) deneyebilirsiniz.
+
+
 ## Mevcut Özellikler
 
 - Admin paneli ile sistem yönetimi
