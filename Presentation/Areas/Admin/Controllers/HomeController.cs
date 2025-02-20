@@ -41,6 +41,8 @@ namespace Presentation.Areas.Admin.Controllers
         public IActionResult AddMedicalSpecialty(MedicalSpecialtyDto medicalSpecialtyDto)
         {
             _medicalSpecialtyService.Add(medicalSpecialtyDto);
+
+            TempData["IsTransactionCompleted"] = true;
             return RedirectToAction("MedicalSpecialties");
         }
 
@@ -55,12 +57,16 @@ namespace Presentation.Areas.Admin.Controllers
         public IActionResult UpdateMedicalSpecialty(MedicalSpecialtyDto medicalSpecialtyDto)
         {
             _medicalSpecialtyService.Update(medicalSpecialtyDto);
+
+            TempData["IsTransactionCompleted"] = true;
             return RedirectToAction("MedicalSpecialties");
         }
 
         public IActionResult DeleteMedicalSpecialty(int id)
         {
             _medicalSpecialtyService.DeleteById(id);
+
+            TempData["IsTransactionCompleted"] = true;
             return RedirectToAction("MedicalSpecialties");
         }
         #endregion
@@ -83,6 +89,8 @@ namespace Presentation.Areas.Admin.Controllers
         public IActionResult AddDoctor(DoctorDto doctorDto)
         {
             _doctorService.Add(doctorDto);
+
+            TempData["IsTransactionCompleted"] = true;
             return RedirectToAction("Doctors");
         }
 
@@ -98,14 +106,24 @@ namespace Presentation.Areas.Admin.Controllers
         public IActionResult UpdateDoctor(DoctorDto doctorDto)
         {
             _doctorService.Update(doctorDto);
+
+            TempData["IsTransactionCompleted"] = true;
             return RedirectToAction("Doctors");
         }
 
         public IActionResult DeleteDoctor(int id)
         {
             _doctorService.DeleteById(id);
+
+            TempData["IsTransactionCompleted"] = true;
             return RedirectToAction("Doctors");
         }
         #endregion
+
+        public IActionResult CompleteTransaction(string route)
+        {
+            TempData["IsTransactionCompleted"] = true;
+            return RedirectToAction(route);
+        }
     }
 }

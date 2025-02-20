@@ -7,10 +7,11 @@ namespace Business.ValidationRules.FluentValidation.Rules
     {
         public DoctorDtoValidator()
         {
-            RuleFor(x => x.Email).NotEmpty().EmailAddress();
-            RuleFor(x => x.Name).NotEmpty();
-            RuleFor(x => x.Surname).NotEmpty();
-            RuleFor(x => x.MedicalSpecialtyId).NotEmpty();
+            RuleFor(x => x.Email).NotEmpty().WithMessage("Eposta boş bırakılamaz!");
+            RuleFor(x => x.Email).EmailAddress().WithMessage("Lütfen eposta formatına uygun yazınız!");
+            RuleFor(x => x.Name).NotEmpty().WithMessage("İsim boş bırakılamaz!");
+            RuleFor(x => x.Surname).NotEmpty().WithMessage("Soyisim boş bırakılamaz!");
+            RuleFor(x => x.MedicalSpecialtyId).NotEmpty().WithMessage("Branş seçilmek zorunda!");
         }
     }
 }

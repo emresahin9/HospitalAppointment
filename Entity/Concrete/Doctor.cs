@@ -11,7 +11,7 @@ namespace Entity.Concrete
         public string Password { get; set; }
         public int HospitalId { get; set; }
         public Hospital Hospital{ get; set; }
-        public int MedicalSpecialtyId { get; set; }
+        public int? MedicalSpecialtyId { get; set; }
         public MedicalSpecialty MedicalSpecialty { get; set; }
     }
 }

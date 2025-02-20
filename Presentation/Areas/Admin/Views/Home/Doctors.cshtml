@@ -28,7 +28,7 @@
                     {
                         <tr>
                             <td>@doctor.Name @doctor.Surname.ToUpper()</td>
-                            <td>@doctor.MedicalSpecialty.Name</td>
+                            <td>@(doctor.MedicalSpecialty?.Name ?? "Doktorun branşı bulunmamakta! Branş seçimini yapınız!")</td>
                             <td><a href="mailto:@doctor.Email">@doctor.Email</a></td>
                             <td>
                                 <a href="@Url.Action("UpdateDoctor", "Home", new { id = doctor.Id, Area = "Admin" })" class="btn btn-primary m-1">Güncelle</a>
@@ -43,5 +43,6 @@
 </section>
 
 @section Javascript {
+    <script>var isTransactionCompleted = @Html.Raw(Json.Serialize(TempData["IsTransactionCompleted"]));</script>
     <script src="/assets/js/pages/admin/doctors.js"></script>
 }

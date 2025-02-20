@@ -66,7 +66,16 @@ namespace Presentation.Filters.ExceptionFilters
                 }
 
                 var validationResult = new ValidationResult(ex.Errors);
-                validationResult.AddToModelState(context.ModelState, null);
+                //validationResult.AddToModelState(context.ModelState, null);
+                foreach (var error in validationResult.Errors)
+                {
+                    if (context.ModelState.ContainsKey(error.PropertyName))
+                    {
+                        context.ModelState.Remove(error.PropertyName);
+
+                        context.ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                    }
+                }
                 context.Result = new ViewResult
                 {
                     ViewData = viewData,

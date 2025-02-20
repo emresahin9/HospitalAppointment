@@ -5,7 +5,7 @@
 <section class="container m-3">
     <div class="d-flex justify-content-between">
         <h4>Hastanede hizmet verilen <b>branşlar</b></h4>
-        <a href="@Url.Action("AddMedicalSpecialty", "home", new { Area = "admin" })" class="btn btn-secondary  col-md-4 col-lg-3 col-xl-2 col-xxl-1" style="max-height:40px;">Ekle</a>
+        <a href="@Url.Action("AddMedicalSpecialty", "Home", new { Area = "Admin" })" class="btn btn-secondary  col-md-4 col-lg-3 col-xl-2 col-xxl-1" style="max-height:40px;">Ekle</a>
     </div>
     <div class=" mt-2">
         @if (Model.Count == 0)
@@ -29,7 +29,7 @@
                             <td>@medicalSpecialty.Name</td>
                             <td>@medicalSpecialty.Description</td>
                             <td>
-                                <a href="@Url.Action("UpdateMedicalSpecialty", "home", new { id = medicalSpecialty.Id, Area = "admin" })" class="btn btn-primary m-1">Güncelle</a>
+                                <a href="@Url.Action("UpdateMedicalSpecialty", "Home", new { id = medicalSpecialty.Id, Area = "Admin" })" class="btn btn-primary m-1">Güncelle</a>
                                 <button type="button" onclick="DeleteMedicalSpecialty(@medicalSpecialty.Id)" class="btn btn-danger m-1" style="width: 87px;">Sil</button>
                             </td>
                         </tr>
@@ -41,5 +41,6 @@
 </section>
 
 @section Javascript {
+    <script>var isTransactionCompleted = @Html.Raw(Json.Serialize(TempData["IsTransactionCompleted"]));</script>
     <script src="/assets/js/pages/admin/medical-specialties.js"></script>
 }

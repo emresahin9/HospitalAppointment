@@ -7,8 +7,9 @@ namespace Business.ValidationRules.FluentValidation.Rules
     {
         public LoginDtoValidator()
         {
-            RuleFor(x => x.Email).NotEmpty().EmailAddress();
-            RuleFor(x => x.Password).NotEmpty();
+            RuleFor(x => x.Email).NotEmpty().WithMessage("Eposta boş bırakılamaz!");
+            RuleFor(x => x.Email).EmailAddress().WithMessage("Lütfen eposta formatına uygun yazınız!");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Şifre boş bırakılamaz!");
         }
     }
 }

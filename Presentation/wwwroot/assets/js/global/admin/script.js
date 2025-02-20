@@ -6,3 +6,10 @@
         new bootstrap.Tooltip(tooltipTriggerEl)
     })
 })()
+
+function TransactionCompleted() {
+    Swal.fire({
+        title: 'İşlem başarıyla tamamlandı.',
+        icon: "success"
+    })
+}

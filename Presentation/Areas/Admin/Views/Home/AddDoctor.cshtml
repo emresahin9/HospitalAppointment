@@ -22,12 +22,15 @@
             <span class="small text-danger" asp-validation-for="Email"></span>
         </div>
         <div class="mb-3">
+            <label class="form-label">Branş</label>
             <select asp-for="MedicalSpecialtyId" class="form-select" aria-label="Default select example">
+                <option value="@null">-Seçiniz-</option>
                 @foreach (var item in TempData["MedicalSpecialties"] as List<MedicalSpecialtyDto>)
                 {
                     <option value="@item.Id">@item.Name</option>
                 }
             </select>
+            <span class="small text-danger" asp-validation-for="MedicalSpecialtyId"></span>
         </div>
         <button type="submit" class="btn btn-outline-secondary">Kaydet</button>
     </form>

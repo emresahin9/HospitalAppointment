@@ -11,7 +11,7 @@ namespace Model.Concrete.Dto
         public string Password { get; set; }
         public int HospitalId { get; set; }
         public HospitalDto Hospital { get; set; }
-        public int MedicalSpecialtyId { get; set; }
+        public int? MedicalSpecialtyId { get; set; }
         public MedicalSpecialtyDto MedicalSpecialty { get; set; }
     }
 }

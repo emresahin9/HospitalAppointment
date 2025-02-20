@@ -1,4 +1,9 @@
-﻿function DeleteDoctor(id) {
+﻿$(document).ready(function () {
+    if (isTransactionCompleted)
+        TransactionCompleted();
+});
+
+function DeleteDoctor(id) {
     Swal.fire({
         title: 'Silmek istediğinize emin misiniz?',
         text: "Öge silinecektir. Bu işlemi geri alamazsınız.",
@@ -17,7 +22,7 @@
                 async: false,
                 url: "DeleteDoctor?id=" + id,
                 success: function (result) {
-                    window.location.reload();
+                    window.location.href = '/Admin/Home/CompleteTransaction?route=Doctors'
                 },
                 error: function (result) {
                     Swal.fire({

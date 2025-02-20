@@ -16,10 +16,12 @@ namespace Business.Concrete
     {
         private readonly IMedicalSpecialtyDal _medicalSpecialtyDal;
         private readonly IHospitalMedicalSpecialtiesDal _hospitalMedicalSpecialtiesDal;
-        public MedicalSpecialtyManager(IMedicalSpecialtyDal medicalSpecialtyDal, IHospitalMedicalSpecialtiesDal hospitalMedicalSpecialtiesDal)
+        private readonly IDoctorDal _doctorDal;
+        public MedicalSpecialtyManager(IMedicalSpecialtyDal medicalSpecialtyDal, IHospitalMedicalSpecialtiesDal hospitalMedicalSpecialtiesDal, IDoctorDal doctorDal)
         {
             _medicalSpecialtyDal = medicalSpecialtyDal;
             _hospitalMedicalSpecialtiesDal = hospitalMedicalSpecialtiesDal;
+            _doctorDal = doctorDal;
         }
         public MedicalSpecialtyDto GetById(int id)
         {
@@ -59,6 +61,12 @@ namespace Business.Concrete
         public void DeleteById(int id)
         {
             _hospitalMedicalSpecialtiesDal.Delete(x => x.MedicalSpecialtyId == id && x.HospitalId == 1);
+            var doctors = _doctorDal.GetAll(x => x.MedicalSpecialtyId == id);
+            foreach(var doctor in doctors)
+            {
+                doctor.MedicalSpecialtyId = null;
+                _doctorDal.Update(doctor);
+            }
             _medicalSpecialtyDal.Delete(x => x.Id == id);
         }
     }

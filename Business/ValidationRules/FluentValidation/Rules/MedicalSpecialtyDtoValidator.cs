@@ -8,8 +8,8 @@ namespace Business.ValidationRules.FluentValidation.Rules
         public MedicalSpecialtyDtoValidator()
         {
 
-            RuleFor(x => x.Name).NotEmpty();
-            RuleFor(x => x.Description).NotEmpty();
+            RuleFor(x => x.Name).NotEmpty().WithMessage("İsim boş bırakılamaz!"); ;
+            RuleFor(x => x.Description).NotEmpty().WithMessage("Açıklama boş bırakılamaz!"); ;
         }
     }
 }
