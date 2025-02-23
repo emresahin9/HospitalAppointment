@@ -21,6 +21,10 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         public DbSet<HospitalMedicalSpecialties> HospitalMedicalSpecialties { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<DoctorRole> DoctorRoles { get; set; }
+        public DbSet<PatientRole> PatientRoles { get; set; }
+        public DbSet<AppointmentSetting> AppointmentSettings { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,11 +37,16 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
             modelBuilder.ApplyConfiguration(new HospitalMedicalSpecialtiesConfiguration());
             modelBuilder.ApplyConfiguration(new DoctorConfiguration());
             modelBuilder.ApplyConfiguration(new AppointmentConfiguration());
+            modelBuilder.ApplyConfiguration(new PatientConfiguration());
+            modelBuilder.ApplyConfiguration(new DoctorRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new PatientRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new AppointmentSettingConfiguration());
 
             new AdminSeedData().Seed(modelBuilder);
             new RoleSeedData().Seed(modelBuilder);
             new AdminRoleSeedData().Seed(modelBuilder);
             new HospitalSeedData().Seed(modelBuilder);
+            new AppointmentSettingSeedData().Seed(modelBuilder);
         }
     }
 }

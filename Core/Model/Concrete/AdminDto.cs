@@ -1,5 +1,4 @@
-﻿using Core.Entity.Concrete;
-using Core.Model.Abstract;
+﻿using Core.Model.Abstract;
 
 namespace Core.Model.Concrete
 {
@@ -7,13 +6,13 @@ namespace Core.Model.Concrete
     {
         public AdminDto()
         {
-            AdminRoles = new List<AdminRoleDto>();
+            Roles = new List<RoleDto>();
         }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public List<AdminRoleDto> AdminRoles { get; set; }
+        public List<RoleDto> Roles { get; set; }
     }
 }

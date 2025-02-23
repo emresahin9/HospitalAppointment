@@ -11,7 +11,7 @@ using MapperType = Business.Mappers.AutoMapper.AutoMapper;
 
 namespace Business.Concrete
 {
-    [AuthorizationAspect(Roles = "Admin")]
+    [AuthorizationAspect(Roles = "admin")]
     public class MedicalSpecialtyManager : IMedicalSpecialtyService
     {
         private readonly IMedicalSpecialtyDal _medicalSpecialtyDal;

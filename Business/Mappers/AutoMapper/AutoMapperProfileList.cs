@@ -14,8 +14,9 @@ namespace Business.Mappers.AutoMapper
                 new MedicalSpecialtyDtoProfile(),
                 new HospitalMedicalSpecialtiesDtoProfile(),
                 new DoctorDtoProfile(),
-                new AppointmentDtoProfile()
-                
+                new AppointmentDtoProfile(),
+                new PatientDtoProfile()
+
             };
 
         }

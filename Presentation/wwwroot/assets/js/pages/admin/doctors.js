@@ -6,7 +6,7 @@
 function DeleteDoctor(id) {
     Swal.fire({
         title: 'Silmek istediğinize emin misiniz?',
-        text: "Öge silinecektir. Bu işlemi geri alamazsınız.",
+        text: "Uyarı: Doktorun randevuları varsa otomatik olarak bu randevular da silinecektir!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: 'Evet Sil',

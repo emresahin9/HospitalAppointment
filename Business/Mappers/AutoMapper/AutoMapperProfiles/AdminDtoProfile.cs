@@ -9,7 +9,7 @@ namespace Business.Mappers.AutoMapper.AutoMapperProfiles
         public AdminDtoProfile()
         {
             CreateMap<Admin, AdminDto>()
-                .ForMember(x => x.AdminRoles, i => i.MapFrom(x => x.AdminRoles.Select(x => x.Role)));
+                .ForMember(x => x.Roles, i => i.MapFrom(x => x.AdminRoles.Select(x => x.Role)));
             CreateMap<AdminDto, Admin>();
         }
     }

@@ -14,6 +14,8 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<AdminManager>().As<IAdminService>();
             builder.RegisterType<MedicalSpecialtyManager>().As<IMedicalSpecialtyService>();
             builder.RegisterType<DoctorManager>().As<IDoctorService>();
+            builder.RegisterType<AppointmentManager>().As<IAppointmentService>();
+            builder.RegisterType<PatientManager>().As<IPatientService>();
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

@@ -56,7 +56,7 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
                             Id = 1,
                             Email = "admin@admin.com",
                             Name = "Admin",
-                            Password = "12345678",
+                            Password = "25D55AD283AA400AF464C76D713C07AD",
                             Surname = "Admin"
                         });
                 });
@@ -113,6 +113,16 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
                         {
                             Id = 1,
                             Name = "admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "doctor"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "patient"
                         });
                 });
 
@@ -124,20 +134,67 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DurationInMinutes")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsAppointmentComplete")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("PatientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
 
+                    b.HasIndex("PatientId");
+
                     b.ToTable("Appointments", "dbo");
+                });
+
+            modelBuilder.Entity("Entity.Concrete.AppointmentSetting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AppointmentDurationInMinutes")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AppointmentEndTimeInHours")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AppointmentStartTimeInHours")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BreakEndTimeInHours")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BreakStartTimeInHours")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppointmentSettings", "dbo");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AppointmentDurationInMinutes = 20,
+                            AppointmentEndTimeInHours = 17,
+                            AppointmentStartTimeInHours = 8,
+                            BreakEndTimeInHours = 13,
+                            BreakStartTimeInHours = 12
+                        });
                 });
 
             modelBuilder.Entity("Entity.Concrete.Doctor", b =>
@@ -177,6 +234,29 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
                     b.HasIndex("MedicalSpecialtyId");
 
                     b.ToTable("Doctors", "dbo");
+                });
+
+            modelBuilder.Entity("Entity.Concrete.DoctorRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("DoctorRoles", "dbo");
                 });
 
             modelBuilder.Entity("Entity.Concrete.Hospital", b =>
@@ -252,6 +332,70 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
                     b.ToTable("MedicalSpecialtys", "dbo");
                 });
 
+            modelBuilder.Entity("Entity.Concrete.Patient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdentityNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Patients", "dbo");
+                });
+
+            modelBuilder.Entity("Entity.Concrete.PatientRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("PatientRoles", "dbo");
+                });
+
             modelBuilder.Entity("Core.Entity.Concrete.AdminRole", b =>
                 {
                     b.HasOne("Core.Entity.Concrete.Admin", "Admin")
@@ -274,12 +418,18 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
             modelBuilder.Entity("Entity.Concrete.Appointment", b =>
                 {
                     b.HasOne("Entity.Concrete.Doctor", "Doctor")
-                        .WithMany()
+                        .WithMany("Appointments")
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entity.Concrete.Patient", "Patient")
+                        .WithMany("Appointments")
+                        .HasForeignKey("PatientId");
+
                     b.Navigation("Doctor");
+
+                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("Entity.Concrete.Doctor", b =>
@@ -297,6 +447,25 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
                     b.Navigation("Hospital");
 
                     b.Navigation("MedicalSpecialty");
+                });
+
+            modelBuilder.Entity("Entity.Concrete.DoctorRole", b =>
+                {
+                    b.HasOne("Entity.Concrete.Doctor", "Doctor")
+                        .WithMany("DoctorRoles")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entity.Concrete.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("Entity.Concrete.HospitalMedicalSpecialties", b =>
@@ -318,9 +487,35 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
                     b.Navigation("MedicalSpecialty");
                 });
 
+            modelBuilder.Entity("Entity.Concrete.PatientRole", b =>
+                {
+                    b.HasOne("Entity.Concrete.Patient", "Patient")
+                        .WithMany("PatientRoles")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entity.Concrete.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Patient");
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("Core.Entity.Concrete.Admin", b =>
                 {
                     b.Navigation("AdminRoles");
+                });
+
+            modelBuilder.Entity("Entity.Concrete.Doctor", b =>
+                {
+                    b.Navigation("Appointments");
+
+                    b.Navigation("DoctorRoles");
                 });
 
             modelBuilder.Entity("Entity.Concrete.Hospital", b =>
@@ -331,6 +526,13 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
             modelBuilder.Entity("Entity.Concrete.MedicalSpecialty", b =>
                 {
                     b.Navigation("HospitalMedicalSpecialties");
+                });
+
+            modelBuilder.Entity("Entity.Concrete.Patient", b =>
+                {
+                    b.Navigation("Appointments");
+
+                    b.Navigation("PatientRoles");
                 });
 #pragma warning restore 612, 618
         }

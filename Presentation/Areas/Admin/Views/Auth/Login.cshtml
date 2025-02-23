@@ -5,14 +5,14 @@
 
 
 <!doctype HTML>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="~/assets/css/plugins/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/assets/css/plugins/bootstrap.min.css">
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
     <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -23,10 +23,14 @@
     <meta name="theme-color" content="#7952b3">
 
     <!-- Custom styles for this template -->
-    <link href="~/assets/css/pages/login.css" rel="stylesheet">
+    <link href="~/assets/css/global/shared/login.css" rel="stylesheet">
 </head>
 <body class="text-center">
     <main class="form-signin">
+        <div class="alert alert-info text-center" role="alert">
+            Yönetici Eposta: admin@admin.com
+            Şifre: 12345678
+        </div>
         @if (TempData["ErrorMessage"] != null)
         {
             <div class="alert alert-danger text-center" role="alert">
@@ -54,6 +58,8 @@
                 </label>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit">Giriş yap</button>
+            <hr />
+            <a href="/Doctor/Auth/Login" class="w-100 btn btn-lg btn-secondary" type="submit">Doktor Girişi</a>
         </form>
     </main>
 </body>

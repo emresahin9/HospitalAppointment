@@ -12,6 +12,7 @@ using System.Linq.Expressions;
 using MapperType = Business.Mappers.AutoMapper.AutoMapper;
 using Core.Utilities.Security;
 using System.Data;
+using System.Web.Helpers;
 
 namespace Business.Concrete
 {
@@ -27,7 +28,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(LoginDtoValidator))]
         public string Login(LoginDto loginDto)
         {
-            var admin = _adminDal.Get(x => x.Email == loginDto.Email && x.Password == loginDto.Password, x => x.Include(i => i.AdminRoles).ThenInclude(t => t.Role));
+            var admin = _adminDal.Get(x => x.Email == loginDto.Email && x.Password == Crypto.Hash(loginDto.Password, "MD5"), x => x.Include(i => i.AdminRoles).ThenInclude(t => t.Role));
 
             if (admin == null)
                 throw new ErrorInformation("Email veya şifre hatalı");

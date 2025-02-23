@@ -9,5 +9,6 @@ namespace Business.Abstract
         void Add(DoctorDto doctorDto);
         void Update(DoctorDto doctorDto);
         void DeleteById(int id);
+        string Login(LoginDto loginDto);
     }
 }

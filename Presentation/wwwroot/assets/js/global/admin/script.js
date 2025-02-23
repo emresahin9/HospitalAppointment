@@ -10,6 +10,7 @@
 function TransactionCompleted() {
     Swal.fire({
         title: 'İşlem başarıyla tamamlandı.',
-        icon: "success"
+        icon: "success",
+        confirmButtonColor: '#8fce00'
     })
 }

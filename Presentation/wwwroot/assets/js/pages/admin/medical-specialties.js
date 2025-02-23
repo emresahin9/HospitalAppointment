@@ -6,7 +6,7 @@
 function DeleteMedicalSpecialty(id) {
     Swal.fire({
         title: 'Silmek istediğinize emin misiniz?',
-        text: "Öge silinecektir. Bu işlemi geri alamazsınız.",
+        text: "Uyarı: Bu branşın doktorlarının branş seçimi tekrar yapılmalıdır.",
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: 'Evet Sil',

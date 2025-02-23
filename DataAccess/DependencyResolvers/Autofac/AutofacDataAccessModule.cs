@@ -16,6 +16,10 @@ namespace DataAccess.DependencyResolvers.Autofac
             builder.RegisterType<EfHospitalMedicalSpecialtiesDal>().As<IHospitalMedicalSpecialtiesDal>().SingleInstance();
             builder.RegisterType<EfDoctorDal>().As<IDoctorDal>().SingleInstance();
             builder.RegisterType<EfAppointmentDal>().As<IAppointmentDal>().SingleInstance();
+            builder.RegisterType<EfPatientDal>().As<IPatientDal>().SingleInstance();
+            builder.RegisterType<EfDoctorRoleDal>().As<IDoctorRoleDal>().SingleInstance();
+            builder.RegisterType<EfPatientRoleDal>().As<IPatientRoleDal>().SingleInstance();
+            builder.RegisterType<EfAppointmentSettingDal>().As<IAppointmentSettingDal>().SingleInstance();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Presentation.Areas.Admin.Controllers
 
         public IActionResult Login()
         {
-            if (User.Identity.IsAuthenticated) return Redirect("/admin/home/index");
+            //if (User.Identity.IsAuthenticated) return Redirect("/Admin/Home/Index");
 
             DeleteCookies();
 
@@ -42,14 +42,14 @@ namespace Presentation.Areas.Admin.Controllers
                 HttpContext.Response.Cookies.Append("authCookie", cookie);
             }
 
-            return Redirect("/admin/home/index");
+            return Redirect("/Admin/Home/Index");
         }
 
         public IActionResult LogOut()
         {
             DeleteCookies();
 
-            return Redirect("/admin/auth/login");
+            return Redirect("/Admin/Auth/Login");
         }
 
         private void DeleteCookies()

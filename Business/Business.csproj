@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="7.1.0" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.3.0" />
   </ItemGroup>
 
   <ItemGroup>

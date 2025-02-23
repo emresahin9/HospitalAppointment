@@ -16,7 +16,7 @@ namespace Presentation.Filters.ActionFilters
             if (context.HttpContext.User.Identity.Name == null)
             {
                 context.Result = new RedirectToRouteResult(
-                     new RouteValueDictionary(new { area = "admin", controller = "auth", action = "login" })
+                     new RouteValueDictionary(new { area = "Admin", controller = "Auth", action = "Login" })
                 );
             }
             else
@@ -26,7 +26,7 @@ namespace Presentation.Filters.ActionFilters
                 if (identity.Roles.FirstOrDefault(x => x == "admin") == null)
                 {
                     context.Result = new RedirectToRouteResult(
-                        new RouteValueDictionary(new { area = "admin", controller = "auth", action = "login" })
+                        new RouteValueDictionary(new { area = "Admin", controller = "Auth", action = "Login" })
                     );
                 }
             }

@@ -8,7 +8,8 @@ namespace Business.Mappers.AutoMapper.AutoMapperProfiles
     {
         public DoctorDtoProfile()
         {
-            CreateMap<Doctor, DoctorDto>();
+            CreateMap<Doctor, DoctorDto>()
+                .ForMember(x => x.Roles, i => i.MapFrom(x => x.DoctorRoles.Select(x => x.Role)));
             CreateMap<DoctorDto, Doctor>();
         }
     }
