@@ -15,11 +15,11 @@ Projeyi canlı olarak [buradan](http://hospital-appointment.runasp.net/) deneyeb
 
 - Admin paneli ile sistem yönetimi
 - Hastanenin branş ve doktor yönetimi
+- Doktor randevu açma işlevi
   
 ## Gelecek Özellikler
 
-- Kullanıcı kayıt ve giriş sistemi
-- Doktor ve hasta profilleri
+- Hasta kayıt ve giriş sistemi
 - Randevu oluşturma ve yönetme
 - Randevu geçmişi ve bildirimler
 - Hastane ekleme
@@ -47,7 +47,9 @@ Proje, katmanlı mimari kullanılarak geliştirilmiştir. Bu sayede, kodun sürd
 
 ## Ekran Görüntüleri
 
-![chrome-capture-2025-2-17](https://github.com/user-attachments/assets/f55a9207-5745-4a25-ace2-aa917bc4e022)
+![chrome-capture-2025-2-23 (6)](https://github.com/user-attachments/assets/06fe6925-a846-45c6-adfa-934c044bbe35)
 ![chrome-capture-2025-2-17 (1)](https://github.com/user-attachments/assets/83c05853-4ac0-433e-8b3c-0b3af05c4834)
 ![chrome-capture-2025-2-17 (2)](https://github.com/user-attachments/assets/6e8ef473-8298-48d2-a94f-30716bed485b)
 ![chrome-capture-2025-2-17 (3)](https://github.com/user-attachments/assets/290840b9-e5de-459e-963f-a7ede161fd0c)
+![chrome-capture-2025-2-23 (7)](https://github.com/user-attachments/assets/b8f9d40e-8eb3-45c4-b160-4ce354c71a2d)
+
