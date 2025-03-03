@@ -16,23 +16,25 @@ Projeyi canlı olarak [buradan](http://hospital-appointment.runasp.net/) deneyeb
 - Admin paneli ile sistem yönetimi
 - Hastanenin branş ve doktor yönetimi
 - Doktor randevu açma işlevi
+- Hasta kayıt ve giriş sistemi
+- Randevu alma ve yönetme
   
 ## Gelecek Özellikler
 
-- Hasta kayıt ve giriş sistemi
-- Randevu oluşturma ve yönetme
+- Profil güncelleme ve şifre yenileme
 - Randevu geçmişi ve bildirimler
 - Hastane ekleme
 
 ## Teknolojiler
 
-- **.NET Core:**
-- **Razor Pages:**
-- **Entity Framework Core:**
-- **MSSQL:**
+- **.NET Core MVC**
+- **Entity Framework Core**
+- **MSSQL**
 - **Autofac:** Autofac ile IoC konteyner ve AOP(Aspect-Oriented Programming)
-- **Fluent Validation:**
-- **Auto Mapper:**
+- **Fluent Validation**
+- **Auto Mapper**
+- **Bootstrap**
+- **JQuery**
 
 ## Katmanlı Mimari
 
@@ -47,9 +49,11 @@ Proje, katmanlı mimari kullanılarak geliştirilmiştir. Bu sayede, kodun sürd
 
 ## Ekran Görüntüleri
 
-![chrome-capture-2025-2-23 (6)](https://github.com/user-attachments/assets/06fe6925-a846-45c6-adfa-934c044bbe35)
-![chrome-capture-2025-2-17 (1)](https://github.com/user-attachments/assets/83c05853-4ac0-433e-8b3c-0b3af05c4834)
-![chrome-capture-2025-2-17 (2)](https://github.com/user-attachments/assets/6e8ef473-8298-48d2-a94f-30716bed485b)
-![chrome-capture-2025-2-17 (3)](https://github.com/user-attachments/assets/290840b9-e5de-459e-963f-a7ede161fd0c)
-![chrome-capture-2025-2-23 (7)](https://github.com/user-attachments/assets/b8f9d40e-8eb3-45c4-b160-4ce354c71a2d)
+![chrome-capture-2025-3-4 (2)](https://github.com/user-attachments/assets/65cabcab-7c4d-47f1-8418-51eea9fbcdbe)
+![chrome-capture-2025-3-4 (3)](https://github.com/user-attachments/assets/9120aecd-2fe4-4049-a08f-dd19c0bedb22)
+![chrome-capture-2025-3-4 (7)](https://github.com/user-attachments/assets/70328db0-261f-4867-bd53-6359e31718da)
+![chrome-capture-2025-3-4 (5)](https://github.com/user-attachments/assets/1281443c-a35b-4644-89fe-24fa3033237c)
+![chrome-capture-2025-3-4 (6)](https://github.com/user-attachments/assets/7be93752-c807-4567-bf23-85a74e5e65df)
+![chrome-capture-2025-3-4](https://github.com/user-attachments/assets/aff30dea-82fa-4db3-a271-bf736e65c255)
+![chrome-capture-2025-3-4 (1)](https://github.com/user-attachments/assets/75415993-1acd-4a5f-afc1-1b1fcf48d7e2)
 
