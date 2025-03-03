@@ -54,6 +54,6 @@ app.UseRouting();
 
 app.MapControllerRoute(
     name: "area",
-    pattern: "{area=admin}/{controller=auth}/{action=login}");
+    pattern: "{area=patient}/{controller=auth}/{action=login}");
 
 app.Run();

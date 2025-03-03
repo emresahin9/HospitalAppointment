@@ -27,8 +27,8 @@
                     <i class="fa fa-hospital-o fa-2x"></i>
                 </a>
                 <div class="text-end">
-                    <a href="/Patient/Auth/Login" type="button" class="btn btn-outline-light me-2">Hasta Girişi</a>
                     <a href="/Doctor/Auth/Login" type="button" class="btn btn-outline-light me-2">Doktor Girişi</a>
+                    <a href="/Admin/Auth/Login" type="button" class="btn btn-outline-light me-2">Yönetici Girişi</a>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
     <main class="form-body text-center mt-5">
         <div class="form-signin">
             <div class="alert alert-info text-center" role="alert">
-                Yönetici Eposta: admin@admin.com
+                Hasta Eposta: patient@patient.com
                 Şifre: 12345678
             </div>
             @if (TempData["ErrorMessage"] != null)
@@ -46,23 +46,26 @@
                 </div>
             }
             <form method="post">
-                <h2 class="mb-4">YÖNETİCİ GİRİŞİ</h2>
+                <h2 class="mb-4">HASTA GİRİŞİ</h2>
                 <div class="form-floating">
-                    <input asp-for="Email" type="email" class="form-control" id="floatingInput">
+                    <input asp-for="Email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                     <label for="floatingInput">Eposta adresi</label>
                     <span asp-validation-for="Email" class="small text-danger d-block m-2"></span>
                 </div>
                 <div class="form-floating">
-                    <input asp-for="Password" type="password" class="form-control" id="floatingPassword">
+                    <input asp-for="Password" type="password" class="form-control" id="floatingPassword" placeholder="Şifre">
                     <label for="floatingPassword">Şifre</label>
                     <span asp-validation-for="Password" class="small text-danger d-block m-2"></span>
                 </div>
+
                 <div class="checkbox mb-3">
                     <label>
                         <input asp-for="RememberMe" type="checkbox"> Beni hatırla
                     </label>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Giriş yap</button>
+                <hr />
+                <a href="/Patient/Auth/Register" class="w-100 btn btn-lg btn-secondary" type="submit">Hasta Kayıt</a>
             </form>
         </div>
     </main>

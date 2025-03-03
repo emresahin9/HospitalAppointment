@@ -16,8 +16,6 @@ namespace Presentation.Areas.Doctor.Controllers
 
         public IActionResult Login()
         {
-            //if (User.Identity.IsAuthenticated) return Redirect("/Doctor/Home/Index");
-
             DeleteCookies();
 
             return View();

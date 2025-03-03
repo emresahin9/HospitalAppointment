@@ -7,19 +7,17 @@
     <link rel="icon" href="">
     <!-- Css -->
     <link rel="stylesheet" href="~/assets/css/plugins/bootstrap.min.css">
-    <link href="~/assets/css/global/admin/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assets/css/plugins/font-awesome.min.css">
+    <link href="~/assets/css/global/shared/style.css" rel="stylesheet" />
     @RenderSection("Css", false)
 </head>
 <body>
     <header class="p-3 bg-dark text-white">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap" /></svg>
+                <a href="/Admin/Home/Index" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 text-white text-decoration-none">
+                    <i class="fa fa-hospital-o fa-2x"></i>
                 </a>
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-light">Hastane Anasayfası</a></li>
-                </ul>
                 <div class="text-end">
                     <span class="px-2 me-3 text-light"><b>Yönetici</b> @User.Identity.Name</span>
                     <a href="/Doctor/Auth/Login" type="button" class="btn btn-outline-light me-2">Doktor Girişi</a>
@@ -86,7 +84,7 @@
     <script src="~/assets/js/plugins/bootstrap.bundle.min.js"></script>
     <script src="~/assets/js/plugins/jquery.min.js"></script>
     <script src="~/assets/js/plugins/sweetalert2.all.min.js"></script>
-    <script src="~/assets/js/global/admin/script.js"></script>
+    <script src="~/assets/js/global/shared/script.js"></script>
     @RenderSection("Javascript", false)
 </body>
 </html>

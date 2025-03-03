@@ -10,6 +10,8 @@ namespace Business.Mappers.AutoMapper.AutoMapperProfiles
         {
             CreateMap<MedicalSpecialty, MedicalSpecialtyDto>();
             CreateMap<MedicalSpecialtyDto, MedicalSpecialty>();
+
+            CreateMap<MedicalSpecialty, PatientMyAppointmentPageMedicalSpecialtyDto>();
         }
     }
 }

@@ -11,6 +11,8 @@ namespace Business.Mappers.AutoMapper.AutoMapperProfiles
             CreateMap<Patient, PatientDto>()
                 .ForMember(x => x.Roles, i => i.MapFrom(x => x.PatientRoles.Select(x => x.Role)));
             CreateMap<PatientDto, Patient>();
+
+            CreateMap<PatientRegisterDto, Patient>();
         }
     }
 }

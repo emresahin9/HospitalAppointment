@@ -3,15 +3,15 @@
         TransactionCompleted();
 });
 
-function OpenTodayForAppointments(datetime) {
+function CancelAppointment(appointmentId) {
     Swal.fire({
-        title: 'Seçtiğiniz gün randevuya açılacak.',
-        text: "Randevu açma işlemini onaylıyor musunuz?",
-        icon: "success",
+        title: 'İptal etmek istediğinize emin misiniz?',
+        text: "Randevu iptel edilecek!",
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonText: 'Onaylıyorum',
+        confirmButtonText: 'Evet İptal Et',
         cancelButtonText: `Kapat`,
-        confirmButtonColor: '#8fce00',
+        confirmButtonColor: '#d33',
         customClass: {
             popup: 'rounded-0',
             confirmButton: "btn-flat"
@@ -20,15 +20,15 @@ function OpenTodayForAppointments(datetime) {
         if (result.isConfirmed) {
             $.ajax({
                 async: false,
-                url: "OpenTodayForAppointments?datetime=" + datetime,
+                url: "CancelAppointment?appointmentId=" + appointmentId,
                 success: function (result) {
-                    window.location.href = '/Doctor/Home/CompleteTransaction?route=OpeningAppointments'
+                    window.location.href = '/Patient/Home/CompleteTransaction?route=MyAppointments'
                 },
-                error: function (result) {
+                error: function (xhr) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Hata!',
-                        text: 'Sistem Hatası!',
+                        text: 'xhr.responseJSON.message',
                         confirmButtonText: 'Kapat',
                         confirmButtonColor: '#d33',
                         customClass: {
@@ -37,6 +37,7 @@ function OpenTodayForAppointments(datetime) {
                     });
                 }
             });
+
         }
     })
 }

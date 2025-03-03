@@ -1,0 +1,96 @@
+﻿@model PatientRegisterDto
+@{
+    Layout = null;
+}
+
+<!doctype HTML>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="~/assets/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/font-awesome.min.css">
+    <!-- Favicons -->
+    <meta name="theme-color" content="#7952b3">
+
+    <!-- Custom styles for this template -->
+    <link href="~/assets/css/pages/patient/register.css" rel="stylesheet">
+</head>
+<body>
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="#" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 text-white text-decoration-none">
+                    <i class="fa fa-hospital-o fa-2x"></i>
+                </a>
+                <div class="text-end">
+                    <a href="/Doctor/Auth/Login" type="button" class="btn btn-outline-light me-2">Doktor Girişi</a>
+                    <a href="/Admin/Auth/Login" type="button" class="btn btn-outline-light me-2">Yönetici Girişi</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="form-body text-center">
+        <div class="form-signin">
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger text-center" role="alert">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+            <form method="post">
+                <h2 class="mb-3">HASTA KAYIT</h2>
+                <div class="form-floating">
+                    <input asp-for="Name" type="text" class="form-control" id="floatingName" required>
+                    <label for="floatingName">Ad</label>
+                    <span asp-validation-for="Name" class="small text-danger d-block m-2"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Surname" type="text" class="form-control" id="floatingLastName" required>
+                    <label for="floatingLastName">Soyad</label>
+                    <span asp-validation-for="Surname" class="small text-danger d-block m-2"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="IdentityNumber" type="text" class="form-control" id="floatingIdentityNumber" minlength="11" maxlength="11" required>
+                    <label for="floatingIdentityNumber">TC Kimlik Numarası</label>
+                    <span asp-validation-for="IdentityNumber" class="small text-danger d-block m-2"></span>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon" style="height:calc(3.5rem + calc(var(--bs-border-width)* 2));">+90</span>
+                    <div class="form-floating">
+                        <input asp-for="PhoneNumber" type="tel" class="form-control" id="floatingPhoneNumber" minlength="10" maxlength="10" required>
+                        <label for="floatingPhoneNumber">Telefon</label>
+                        <span asp-validation-for="PhoneNumber" class="small text-danger d-block m-2"></span>
+                    </div>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Email" type="email" class="form-control" id="floatingInput" required>
+                    <label for="floatingInput">Eposta adresi</label>
+                    <span asp-validation-for="Email" class="small text-danger d-block m-2"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Password" type="password" class="form-control" id="floatingPassword" required>
+                    <label for="floatingPassword">Şifre</label>
+                    <span asp-validation-for="Password" class="small text-danger d-block m-2"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="PasswordAgain" type="password" class="form-control" id="floatingPasswordAgain" required>
+                    <label for="floatingPasswordAgain">Şifre Tekrarı</label>
+                    <span asp-validation-for="PasswordAgain" class="small text-danger d-block m-2"></span>
+                </div>
+                <div class="form-floating">
+                    <textarea asp-for="Address" style="min-height:80px;" class="form-control" id="floatingAddress" required></textarea>
+                    <label for="floatingAddress">Adres</label>
+                    <span asp-validation-for="Address" class="small text-danger d-block m-2"></span>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Kayıt ol</button>
+                <hr />
+                <a href="/Patient/Auth/Login" class="w-100 btn btn-lg btn-secondary" type="submit">Hasta Girişi</a>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

@@ -7,14 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Patient\Controllers\" />
-    <Folder Include="Areas\Patient\Data\" />
-    <Folder Include="Areas\Patient\Models\" />
-    <Folder Include="Areas\Patient\Views\" />
-    <Folder Include="wwwroot\assets\css\pages\" />
+    <Folder Include="wwwroot\assets\css\global\admin\" />
+    <Folder Include="wwwroot\assets\css\global\doctor\" />
     <Folder Include="wwwroot\assets\document\update\" />
-    <Folder Include="wwwroot\assets\fonts\global\admin\" />
-    <Folder Include="wwwroot\assets\fonts\plugins\" />
+    <Folder Include="wwwroot\assets\js\global\admin\" />
+    <Folder Include="wwwroot\assets\js\global\doctor\" />
     <Folder Include="wwwroot\assets\js\pages\shared\" />
     <Folder Include="wwwroot\assets\media\favicon\admin\" />
     <Folder Include="wwwroot\assets\media\img\" />

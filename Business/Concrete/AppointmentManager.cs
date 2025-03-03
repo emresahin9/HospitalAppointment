@@ -1,8 +1,12 @@
 ﻿using Business.Abstract;
+using Business.Exceptions;
 using Core.Aspects.Autofac.Authorization;
+using Core.Utilities.MappingTools.Concrete;
 using DataAccess.Abstract;
 using Entity.Concrete;
+using Microsoft.EntityFrameworkCore;
 using Model.Concrete.Dto;
+using MapperType = Business.Mappers.AutoMapper.AutoMapper;
 
 namespace Business.Concrete
 {
@@ -37,6 +41,13 @@ namespace Business.Concrete
             return appointmentSchedule;
         }
 
+        [AuthorizationAspect(Roles = "patient")]
+        public List<AppointmentToBeTakenDto> GetAvailableAppointment(int doctorId)
+        {
+            var appointments = _appointmentDal.GetAll(x => x.DoctorId == doctorId && x.Time.Date > DateTime.Now.Date && x.Time.Date < DateTime.Now.AddDays(31).Date).OrderBy(x => x.Time).ToList();
+            return MapperTool<MapperType>.Map<List<Appointment>, List<AppointmentToBeTakenDto>>(appointments);
+        }
+
         [AuthorizationAspect(Roles = "doctor")]
         public void MakeTheSelectedDayAvailableForAppointments(DateTime date, int doctorId)
         {
@@ -64,6 +75,49 @@ namespace Business.Concrete
                     }
                 }
             }
+        }
+
+        [AuthorizationAspect(Roles = "patient")]
+        public void TakeAnAppointment(int appointmentId, int patientId)
+        {
+            var appointment = _appointmentDal.Get(x => x.Id == appointmentId, i => i.Include(x => x.Doctor));
+            // Bu randevu alıma açılmış mı?
+            if(appointment != null)
+            {
+                // Bu randevu biri tarafından alımış mı ve randevu tarihi bugünden sonraya mı?
+                if (appointment.PatientId == null && appointment.Time.Date > DateTime.Now.Date)
+                {
+                    // Bu hastanın aynı uzmanlık alanında aktif başka bir randevusu var mı?
+                    if (_appointmentDal.Get(x => x.PatientId == patientId && !x.IsAppointmentComplete && x.Doctor.MedicalSpecialtyId == appointment.Doctor.MedicalSpecialtyId) == null)
+                    {
+                        appointment.PatientId = patientId;
+                        _appointmentDal.Update(appointment);
+                    }
+                    else
+                        throw new JsonErrorException("Bu branşta randevunuz bulunuyor!");
+                }
+                else
+                    throw new JsonErrorException("Bu randevu biri tarafından alınmış!");
+            }
+            else
+                throw new JsonErrorException("Böyle bir randevu bulunmuyor!");
+        }
+
+        [AuthorizationAspect(Roles = "patient")]
+        public List<PatientMyAppointmentPageAppointmentDto> GetPatientAppointments(int patientId)
+        {
+            var appointments = _appointmentDal.GetAll(x => x.PatientId == patientId, i => i.Include(x => x.Doctor).ThenInclude(t => t.MedicalSpecialty));
+            return MapperTool<MapperType>.Map<List<Appointment>, List<PatientMyAppointmentPageAppointmentDto>>(appointments);
+        }
+
+        [AuthorizationAspect(Roles = "patient")]
+        public void CancelAppointment(int appointmentId, int patientId)
+        {
+            var appointment = _appointmentDal.Get(x => x.Id == appointmentId && x.PatientId == patientId && !x.IsAppointmentComplete);
+            if(appointment is null)
+                throw new JsonErrorException("Bu randevu iptal edilemiyor!");
+            appointment.PatientId = null;
+            _appointmentDal.Update(appointment);
         }
     }
 }

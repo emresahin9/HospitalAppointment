@@ -11,7 +11,6 @@ using MapperType = Business.Mappers.AutoMapper.AutoMapper;
 
 namespace Business.Concrete
 {
-    [AuthorizationAspect(Roles = "admin")]
     public class MedicalSpecialtyManager : IMedicalSpecialtyService
     {
         private readonly IMedicalSpecialtyDal _medicalSpecialtyDal;
@@ -23,18 +22,22 @@ namespace Business.Concrete
             _hospitalMedicalSpecialtiesDal = hospitalMedicalSpecialtiesDal;
             _doctorDal = doctorDal;
         }
+
+        [AuthorizationAspect(Roles = "admin")]
         public MedicalSpecialtyDto GetById(int id)
         {
             var medicalSpecialty = _medicalSpecialtyDal.Get(x => x.Id == id);
             return MapperTool<MapperType>.Map<MedicalSpecialty, MedicalSpecialtyDto>(medicalSpecialty);
         }
 
+        [AuthorizationAspect(Roles = "admin,patient")]
         public List<MedicalSpecialtyDto> GetAll()
         {
             var medicalSpecialties = _medicalSpecialtyDal.GetAll();
             return MapperTool<MapperType>.Map<List<MedicalSpecialty>, List<MedicalSpecialtyDto>>(medicalSpecialties);
         }
 
+        [AuthorizationAspect(Roles = "admin")]
         [ValidationAspect(typeof(MedicalSpecialtyDtoValidator))]
         public void Add(MedicalSpecialtyDto medicalSpecialtyDto)
         {
@@ -50,6 +53,7 @@ namespace Business.Concrete
             _hospitalMedicalSpecialtiesDal.Add(hospitalMedicalSpecialty);
         }
 
+        [AuthorizationAspect(Roles = "admin")]
         [ValidationAspect(typeof(MedicalSpecialtyDtoValidator))]
         public void Update(MedicalSpecialtyDto medicalSpecialtyDto)
         {
@@ -58,6 +62,7 @@ namespace Business.Concrete
             _medicalSpecialtyDal.Update(medicalSpecialty);
         }
 
+        [AuthorizationAspect(Roles = "admin")]
         public void DeleteById(int id)
         {
             _hospitalMedicalSpecialtiesDal.Delete(x => x.MedicalSpecialtyId == id && x.HospitalId == 1);

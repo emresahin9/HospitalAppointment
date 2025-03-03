@@ -141,3 +141,8 @@ nav {
         height: 100vh;
     }
 }
+
+.disabled-day {
+    pointer-events: none;
+    opacity: 0.6;
+}

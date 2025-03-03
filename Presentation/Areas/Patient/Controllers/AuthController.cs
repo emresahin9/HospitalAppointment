@@ -1,17 +1,33 @@
 ﻿using Business.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using Model.Concrete.Dto;
+using Presentation.Filters.ActionFilters;
 using Presentation.Filters.ExceptionFilters;
 
-namespace Presentation.Areas.Admin.Controllers
+namespace Presentation.Areas.Patient.Controllers
 {
-    [Area("Admin")]
+    [Area("Patient")]
     public class AuthController : Controller
     {
-        private readonly IAdminService _adminService;
-        public AuthController(IAdminService adminService)
+        private readonly IPatientService _patientService;
+        public AuthController(IPatientService patientService)
         {
-            _adminService = adminService;
+            _patientService = patientService;
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [TypeFilter(typeof(ValidationExceptionFilter))]
+        [TypeFilter(typeof(ErrorInformationExceptionFilter))]
+        public IActionResult Register(PatientRegisterDto model)
+        {
+            _patientService.Add(model);
+
+            return Redirect("/Patient/Auth/Login");
         }
 
         public IActionResult Login()
@@ -26,7 +42,7 @@ namespace Presentation.Areas.Admin.Controllers
         [TypeFilter(typeof(ErrorInformationExceptionFilter))]
         public IActionResult Login(LoginDto model)
         {
-            var cookie = _adminService.Login(model);
+            var cookie = _patientService.Login(model);
 
             if (model.RememberMe)
             {
@@ -40,14 +56,14 @@ namespace Presentation.Areas.Admin.Controllers
                 HttpContext.Response.Cookies.Append("authCookie", cookie);
             }
 
-            return Redirect("/Admin/Home/Index");
+            return Redirect("/Patient/Home/Index");
         }
 
         public IActionResult LogOut()
         {
             DeleteCookies();
 
-            return Redirect("/Admin/Auth/Login");
+            return Redirect("/Patient/Auth/Login");
         }
 
         private void DeleteCookies()

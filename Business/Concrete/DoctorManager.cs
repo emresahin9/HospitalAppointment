@@ -41,6 +41,13 @@ namespace Business.Concrete
             return MapperTool<MapperType>.Map<List<Doctor>, List<DoctorDto>>(doctors);
         }
 
+        [AuthorizationAspect(Roles = "patient")]
+        public List<DoctorForSelectListDto> GetAllForSelectListByMedicalSpecialtyId(int medicalSpecialtyId)
+        {
+            var doctors = _doctorDal.GetAll(x => x.MedicalSpecialtyId == medicalSpecialtyId);
+            return MapperTool<MapperType>.Map<List<Doctor>, List<DoctorForSelectListDto>>(doctors);
+        }
+
         [AuthorizationAspect(Roles = "admin")]
         [ValidationAspect(typeof(DoctorDtoValidator))]
         public void Add(DoctorDto doctorDto)
@@ -77,12 +84,12 @@ namespace Business.Concrete
         [ValidationAspect(typeof(LoginDtoValidator))]
         public string Login(LoginDto loginDto)
         {
-            var admin = _doctorDal.Get(x => x.Email == loginDto.Email && x.Password == Crypto.Hash(loginDto.Password, "MD5"), x => x.Include(i => i.DoctorRoles).ThenInclude(t => t.Role));
+            var doctor = _doctorDal.Get(x => x.Email == loginDto.Email && x.Password == Crypto.Hash(loginDto.Password, "MD5"), x => x.Include(i => i.DoctorRoles).ThenInclude(t => t.Role));
 
-            if (admin == null)
+            if (doctor == null)
                 throw new ErrorInformation("Email veya şifre hatalı");
 
-            return WebAuthenticationHelper.CreateAutCookie(admin.Name + " " + admin.Surname, admin.DoctorRoles.Select(s => s.Role.Name).ToArray(), admin.Id, admin.Email);
+            return WebAuthenticationHelper.CreateAutCookie(doctor.Name + " " + doctor.Surname, doctor.DoctorRoles.Select(s => s.Role.Name).ToArray(), doctor.Id, doctor.Email);
         }
     }
 }
