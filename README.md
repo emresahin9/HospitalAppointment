@@ -1,6 +1,6 @@
 # Hastane Randevu Sistemi
 
-Bu proje, .NET Core ile katmanlı mimari kullanılarak geliştirilen bir web uygulamasıdır. **Şuan hala geliştirilme aşamasındadır.**
+Bu proje, .NET Core MVC ile katmanlı mimari kullanılarak geliştirilen bir web uygulamasıdır. **Şuan hala geliştirilme aşamasındadır.**
 
 ## Proje Hakkında
 
