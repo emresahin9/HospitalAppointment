@@ -2,33 +2,35 @@
     Layout = "~/Layouts/_PatientLayout.cshtml";
 }
 
-<section class="container m-3">
-    <h4>Randevu Alma Sayfası</h4>
-
-    <div class="mb-3">
-        <label class="form-label">Branş</label>
-        <select id="MedicalSpecialtyId" class="form-select" aria-label="Default select example" onchange="GetDoctors(this)">
-            <option value="0">-Seçiniz-</option>
-            @foreach (var item in TempData["MedicalSpecialties"] as List<MedicalSpecialtyDto>)
-            {
-                <option value="@item.Id">@item.Name</option>
-            }
-        </select>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Doktor</label>
-        <select id="DoctorId" class="form-select" aria-label="Default select example" onchange="GetAppointments(this)"></select>
-    </div>
-
-    <div id="appointmentDateArea" class="container text-center mt-5 invisible">
-        <div class="d-flex justify-content-center align-items-center mb-3">
-            <button class="btn btn-outline-primary disabled-day" id="prevDate">&lt;</button>
-            <h3 class="mx-3" id="selectedDate"></h3>
-            <button class="btn btn-outline-primary" id="nextDate">&gt;</button>
-        </div>
-        <div class="card w-50 mx-auto">
-            <div class="card-body row" id="appointmentsList">
-
+<section class="container">
+    <h4 class="m-4">Randevu Alma Sayfası</h4>
+    <hr />
+    <div class="d-flex justify-content-center">
+        <div class="col-12 col-md-9 col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Branş</label>
+                <select id="MedicalSpecialtyId" class="form-select" aria-label="Default select example" onchange="GetDoctors(this)">
+                    <option value="0">-Seçiniz-</option>
+                    @foreach (var item in TempData["MedicalSpecialties"] as List<MedicalSpecialtyDto>)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Doktor</label>
+                <select id="DoctorId" class="form-select" aria-label="Default select example" onchange="GetAppointments(this)"></select>
+            </div>
+            <div id="appointmentDateArea" class="text-center mt-5 invisible">
+                <div class="d-flex justify-content-center align-items-center mb-3">
+                    <button class="btn btn-outline-primary disabled-day" id="prevDate">&lt;</button>
+                    <h3 class="mx-3" id="selectedDate"></h3>
+                    <button class="btn btn-outline-primary" id="nextDate">&gt;</button>
+                </div>
+                <div class="card">
+                    <div class="card-body row" id="appointmentsList">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

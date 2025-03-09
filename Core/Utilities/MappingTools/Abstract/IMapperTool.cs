@@ -3,6 +3,6 @@
     public interface IMapperTool
     {
         TDestination Map<TSource, TDestination>(TSource source);
-        THedef Map<TKaynak, THedef>(TKaynak kaynak, THedef hedef);
+        TDestination Map<TSource, TDestination>(TSource source, TDestination destination);
     }
 }

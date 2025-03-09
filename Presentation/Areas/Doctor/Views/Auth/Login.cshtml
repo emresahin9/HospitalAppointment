@@ -35,35 +35,35 @@
     </header>
     <main class="form-body text-center mt-5">
         <div class="form-signin">
-        <div class="alert alert-info text-center" role="alert">
-            Doktor Eposta: doctor@doctor.com
-            Şifre: 12345678
-        </div>
-        @if (TempData["ErrorMessage"] != null)
-        {
-            <div class="alert alert-danger text-center" role="alert">
-                @TempData["ErrorMessage"]
+            <div class="alert alert-info text-center" role="alert">
+                Doktor Eposta: doctor@doctor.com
+                Şifre: 12345678
             </div>
-        }
-        <form method="post">
-            <h2 class="mb-4">DOKTOR GİRİŞİ</h2>
-            <div class="form-floating">
-                <input asp-for="Email" type="email" class="form-control" id="floatingInput">
-                <label for="floatingInput">Eposta adresi</label>
-                <span asp-validation-for="Email" class="small text-danger d-block m-2"></span>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Password" type="password" class="form-control" id="floatingPassword">
-                <label for="floatingPassword">Şifre</label>
-                <span asp-validation-for="Password" class="small text-danger d-block m-2"></span>
-            </div>
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger text-center" role="alert">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+            <form method="post">
+                <h2 class="mb-4">DOKTOR GİRİŞİ</h2>
+                <div class="form-floating">
+                    <input asp-for="Email" type="email" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Eposta adresi</label>
+                    <span asp-validation-for="Email" class="small text-danger d-block m-2"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Password" type="password" class="form-control" id="floatingPassword">
+                    <label for="floatingPassword">Şifre</label>
+                    <span asp-validation-for="Password" class="small text-danger d-block m-2"></span>
+                </div>
 
-            <div class="checkbox mb-3">
-                <label>
-                    <input asp-for="RememberMe" type="checkbox"> Beni hatırla
-                </label>
-            </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Giriş yap</button>
+                <div class="checkbox mb-3">
+                    <label>
+                        <input asp-for="RememberMe" type="checkbox"> Beni hatırla
+                    </label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Giriş yap</button>
             </form>
         </div>
     </main>

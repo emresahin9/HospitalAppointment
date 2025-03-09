@@ -24,6 +24,7 @@ namespace Presentation.Areas.Admin.Controllers
         [HttpPost]
         [TypeFilter(typeof(ValidationExceptionFilter))]
         [TypeFilter(typeof(ErrorInformationExceptionFilter))]
+        //[ValidateAntiForgeryToken]
         public IActionResult Login(LoginDto model)
         {
             var cookie = _adminService.Login(model);

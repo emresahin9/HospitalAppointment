@@ -114,9 +114,9 @@ function GetAppointments(e) {
                 if (appointments[dateStr]) {
                     appointments[dateStr].forEach(item => {
                         if (!item.isAvailable)
-                            list.append(`<div class="col-xl-2 col-lg-3 col-sm-6 p-2""><button class="btn btn-primary disabled-day" disabled>${item.time.split('T')[1].split(':')[0]}:${item.time.split('T')[1].split(':')[1]}</button></div>`)
+                            list.append(`<div class="col-xl-3 col-lg-4 col-sm-4 col-6 p-2""><button class="btn btn-primary w-75 disabled-day" disabled>${item.time.split('T')[1].split(':')[0]}:${item.time.split('T')[1].split(':')[1]}</button></div>`)
                         else
-                            list.append(`<div class="col-xl-2 col-lg-3 col-sm-6 p-2"><button class="btn btn-primary" onclick="TakeAnAppointment(${item.id})">${item.time.split('T')[1].split(':')[0]}:${item.time.split('T')[1].split(':')[1]}</button></div>`)
+                            list.append(`<div class="col-xl-3 col-lg-4 col-sm-4 col-6 p-2"><button class="btn btn-primary w-75" onclick="TakeAnAppointment(${item.id})">${item.time.split('T')[1].split(':')[0]}:${item.time.split('T')[1].split(':')[1]}</button></div>`)
                     });
                 } else {
                     list.append(`<span class="text-muted">Bu tarihte randevu bulunmamaktadır.</span>`);

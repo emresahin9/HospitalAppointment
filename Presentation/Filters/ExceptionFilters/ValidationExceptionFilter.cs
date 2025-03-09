@@ -63,6 +63,21 @@ namespace Presentation.Filters.ExceptionFilters
                         tempData.Add("MedicalSpecialties", _medicalSpecialtyService.GetAll());
                         viewData.Model = doctor;
                         break;
+                    case ValidationType.PatientUpdatePersonalInfo:
+                        arguments = context.HttpContext.Items["ActionArguments"] as IDictionary;
+                        var patientUpdatePersonalInfo = arguments["model"] as PatientUpdatePersonalInfoDto;
+                        viewData.Model = patientUpdatePersonalInfo;
+                        break;
+                    case ValidationType.PatientUpdateContactInfo:
+                        arguments = context.HttpContext.Items["ActionArguments"] as IDictionary;
+                        var patientUpdateContactInfo = arguments["model"] as PatientUpdateContactInfoDto;
+                        viewData.Model = patientUpdateContactInfo;
+                        break;
+                    case ValidationType.PatientUpdatePassword:
+                        arguments = context.HttpContext.Items["ActionArguments"] as IDictionary;
+                        var patientUpdatePassword = arguments["model"] as PatientUpdatePasswordDto;
+                        viewData.Model = patientUpdatePassword;
+                        break;
                 }
 
                 var validationResult = new ValidationResult(ex.Errors);
@@ -93,6 +108,9 @@ namespace Presentation.Filters.ExceptionFilters
         Null = 0,
         Login = 1,
         MedicalSpecialty = 2,
-        Doctor = 3
+        Doctor = 3,
+        PatientUpdatePersonalInfo = 4,
+        PatientUpdateContactInfo = 5,
+        PatientUpdatePassword = 6
     }
 }

@@ -5,7 +5,9 @@ using Core.Utilities.Security;
 using DataAccess.Abstract;
 using Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Model.Concrete.Dto;
 using Presentation.Filters.ActionFilters;
+using Presentation.Filters.ExceptionFilters;
 
 namespace Presentation.Areas.Patient.Controllers
 {
@@ -38,6 +40,55 @@ namespace Presentation.Areas.Patient.Controllers
         public IActionResult MyAppointments()
         {
             return View(_appointmentService.GetPatientAppointments(Convert.ToInt32(((Identity)User.Identity).Id)));
+        }
+
+        public IActionResult UpdatePersonalInfo()
+        {
+            return View(_patientService.GetByIdForUpdatePersonalInfo(Convert.ToInt32(((Identity)User.Identity).Id)));
+        }
+
+        [HttpPost]
+        [TypeFilter(typeof(ValidationExceptionFilter), Arguments = new object[] { ValidationType.PatientUpdatePersonalInfo })]
+        public IActionResult UpdatePersonalInfo(PatientUpdatePersonalInfoDto patientUpdatePersonalInfoDto)
+        {
+            patientUpdatePersonalInfoDto.Id = Convert.ToInt32(((Identity)User.Identity).Id);
+            _patientService.UpdatePersonalInfo(patientUpdatePersonalInfoDto);
+
+            TempData["IsTransactionCompleted"] = true;
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult UpdateContactInfo()
+        {
+            return View(_patientService.GetByIdForUpdateContactInfo(Convert.ToInt32(((Identity)User.Identity).Id)));
+        }
+
+        [HttpPost]
+        [TypeFilter(typeof(ValidationExceptionFilter), Arguments = new object[] { ValidationType.PatientUpdateContactInfo })]
+        public IActionResult UpdateContactInfo(PatientUpdateContactInfoDto patientUpdateContactInfoDto)
+        {
+            patientUpdateContactInfoDto.Id = Convert.ToInt32(((Identity)User.Identity).Id);
+            _patientService.UpdateContactInfo(patientUpdateContactInfoDto);
+
+            TempData["IsTransactionCompleted"] = true;
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult UpdatePassword()
+        {
+            return View(_patientService.GetByIdForUpdatePassword(Convert.ToInt32(((Identity)User.Identity).Id)));
+        }
+
+        [HttpPost]
+        [TypeFilter(typeof(ValidationExceptionFilter), Arguments = new object[] { ValidationType.PatientUpdatePassword })]
+        [TypeFilter(typeof(ErrorInformationExceptionFilter))]
+        public IActionResult UpdatePassword(PatientUpdatePasswordDto patientUpdatePasswordDto)
+        {
+            patientUpdatePasswordDto.Id = Convert.ToInt32(((Identity)User.Identity).Id);
+            _patientService.UpdatePassword(patientUpdatePasswordDto);
+
+            TempData["IsTransactionCompleted"] = true;
+            return RedirectToAction("Index");
         }
 
         public IActionResult TakeAnAppointment(int appointmentId)

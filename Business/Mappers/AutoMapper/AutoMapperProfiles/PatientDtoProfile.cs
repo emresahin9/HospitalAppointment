@@ -13,6 +13,15 @@ namespace Business.Mappers.AutoMapper.AutoMapperProfiles
             CreateMap<PatientDto, Patient>();
 
             CreateMap<PatientRegisterDto, Patient>();
+
+            CreateMap<Patient, PatientUpdatePersonalInfoDto>();
+            CreateMap<PatientUpdatePersonalInfoDto, Patient>();
+
+            CreateMap<Patient, PatientUpdateContactInfoDto>();
+            CreateMap<PatientUpdateContactInfoDto, Patient>();
+
+            CreateMap<Patient, PatientUpdatePasswordDto>();
+            CreateMap<PatientUpdatePasswordDto, Patient>();
         }
     }
 }

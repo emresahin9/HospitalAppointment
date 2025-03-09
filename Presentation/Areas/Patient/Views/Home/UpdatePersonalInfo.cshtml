@@ -1,0 +1,32 @@
+﻿@model PatientUpdatePersonalInfoDto
+@{
+    Layout = "~/Layouts/_PatientLayout.cshtml";
+}
+
+<section class="container">
+    <h4 class="m-4">Kişisel Bilgileri Güncelleme</h4>
+    @Html.Partial("_UpdateProfileTab", "PersonalInfo")
+    <div class="d-flex justify-content-center">
+        <form method="POST" class="mt-2 col-12 col-md-9 col-lg-6">
+            <input type="hidden" asp-for="IdentityNumber" />
+            <div class="mb-3">
+                <label class="form-label">Adı</label>
+                <input asp-for="Name" type="text" class="form-control">
+                <span class="small text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Soyadı</label>
+                <input asp-for="Surname" type="text" class="form-control">
+                <span class="small text-danger" asp-validation-for="Surname"></span>
+            </div>
+            <div>
+                <label class="form-label">TC Kimlik Numarası</label>
+                <input asp-for="IdentityNumber" type="text" class="form-control" disabled>
+            </div>
+            <div class="mt-5 d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+            </div>
+        </form>
+    </div>
+</section>
+

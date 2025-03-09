@@ -3,18 +3,20 @@
     Layout = "~/Layouts/_PatientLayout.cshtml";
 }
 
-<section class="container m-3">
-    <h4>Randevularım</h4>
+<section class="container">
+    <h4 class="m-4">Randevularım</h4>
+    <hr />
     @if (Model.Count() == 0)
     {
         <h4 class="text-center mt-5">Randevunuz bulunmuyor.</h4>
     }
+    <div class="container">
     @foreach (var appointment in Model)
     {
-        <div class="card shadow-sm border-0 mb-3@(appointment.IsAppointmentComplete?" opacity-50":"")">
+        <div class="card shadow border-0 mb-3@(appointment.IsAppointmentComplete?" opacity-50":"")">
             <div class="card-header d-flex justify-content-between align-items-center py-3">
                 <div>
-                    <i class="fa fa-calendar-@(appointment.IsAppointmentComplete?"times":"check")-o fa-2x me-2"></i><span class="fw-bolder">Tarih: </span> @appointment.Time.ToString("D") - <span class="fw-bolder">Saat: </span> @appointment.Time.ToString("t")
+                        <i class="fa fa-calendar-@(appointment.IsAppointmentComplete?"times":"check")-o fa-2x me-2"></i><span class="fw-bolder"> Tarih: </span> @appointment.Time.ToString("D") &ensp;&nbsp; <span class="fw-bolder">Saat: </span> @appointment.Time.ToString("t")
                     
                 </div>
                 @if (appointment.IsAppointmentComplete)
@@ -43,6 +45,7 @@
             </div>
         </div>
     }
+    </div>
 </section>
 
 @section Javascript {

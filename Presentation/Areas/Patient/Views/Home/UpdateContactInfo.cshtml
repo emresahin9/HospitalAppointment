@@ -1,0 +1,34 @@
+﻿@model PatientUpdateContactInfoDto
+@{
+    Layout = "~/Layouts/_PatientLayout.cshtml";
+}
+
+<section class="container">
+    <h4 class="m-4">İletişim Bilgileri Güncelleme</h4>
+    @Html.Partial("_UpdateProfileTab", "ContactInfo")
+    <div class="d-flex justify-content-center">
+        <form method="POST" class="mt-2 col-12 col-md-9 col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Telefon</label>
+                <div class="input-group">
+                    <span class="input-group-text">+90</span>
+                    <input asp-for="PhoneNumber" type="tel" class="form-control">
+                </div>
+                <span class="small text-danger" asp-validation-for="PhoneNumber"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Eposta Adresi</label>
+                <input asp-for="Email" type="email" class="form-control">
+                <span class="small text-danger" asp-validation-for="Email"></span>
+            </div>
+            <div>
+                <label class="form-label">Adres</label>
+                <textarea asp-for="Address" type="text" class="form-control" rows="3"></textarea>
+                <span class="small text-danger" asp-validation-for="Address"></span>
+            </div>
+            <div class="mt-5 d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+            </div>
+        </form>
+    </div>
+</section>

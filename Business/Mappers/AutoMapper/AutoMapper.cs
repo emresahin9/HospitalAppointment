@@ -23,9 +23,9 @@ namespace Business.Mappers.AutoMapper
             return _mapper.Map<TDestination>(source);
         }
 
-        public THedef Map<TKaynak, THedef>(TKaynak kaynak, THedef hedef)
+        public TDestination Map<TSource, TDestination>(TSource source, TDestination destination)
         {
-            return _mapper.Map(kaynak, hedef);
+            return _mapper.Map(source, destination);
         }
 
         private static MapperConfiguration _mapperConfiguration;

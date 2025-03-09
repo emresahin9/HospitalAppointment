@@ -23,6 +23,7 @@ namespace Presentation.Areas.Patient.Controllers
         [HttpPost]
         [TypeFilter(typeof(ValidationExceptionFilter))]
         [TypeFilter(typeof(ErrorInformationExceptionFilter))]
+        //[ValidateAntiForgeryToken]
         public IActionResult Register(PatientRegisterDto model)
         {
             _patientService.Add(model);
@@ -40,6 +41,7 @@ namespace Presentation.Areas.Patient.Controllers
         [HttpPost]
         [TypeFilter(typeof(ValidationExceptionFilter))]
         [TypeFilter(typeof(ErrorInformationExceptionFilter))]
+        //[ValidateAntiForgeryToken]
         public IActionResult Login(LoginDto model)
         {
             var cookie = _patientService.Login(model);

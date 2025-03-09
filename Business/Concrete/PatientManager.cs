@@ -88,5 +88,60 @@ namespace Business.Concrete
 
             return WebAuthenticationHelper.CreateAutCookie(patient.Name + " " + patient.Surname, patient.PatientRoles.Select(s => s.Role.Name).ToArray(), patient.Id, patient.Email);
         }
+
+        [AuthorizationAspect(Roles = "patient")]
+        public PatientUpdatePersonalInfoDto GetByIdForUpdatePersonalInfo(int id)
+        {
+            var patient = _patientDal.Get(x => x.Id == id);
+            return MapperTool<MapperType>.Map<Patient, PatientUpdatePersonalInfoDto>(patient);
+        }
+
+        [AuthorizationAspect(Roles = "patient")]
+        public PatientUpdateContactInfoDto GetByIdForUpdateContactInfo(int id)
+        {
+            var patient = _patientDal.Get(x => x.Id == id);
+            return MapperTool<MapperType>.Map<Patient, PatientUpdateContactInfoDto>(patient);
+        }
+
+        [AuthorizationAspect(Roles = "patient")]
+        public PatientUpdatePasswordDto GetByIdForUpdatePassword(int id)
+        {
+            var patient = _patientDal.Get(x => x.Id == id);
+            return MapperTool<MapperType>.Map<Patient, PatientUpdatePasswordDto>(patient);
+        }
+
+        [AuthorizationAspect(Roles = "patient")]
+        [ValidationAspect(typeof(PatientUpdatePersonalInfoDtoValidator))]
+        public void UpdatePersonalInfo(PatientUpdatePersonalInfoDto patientUpdatePersonalInfoDto)
+        {
+            var patientEntity = _patientDal.Get(x => x.Id == patientUpdatePersonalInfoDto.Id);
+            patientUpdatePersonalInfoDto.IdentityNumber = patientEntity.IdentityNumber;
+            var patient = MapperTool<MapperType>.Map<PatientUpdatePersonalInfoDto, Patient>(patientUpdatePersonalInfoDto, patientEntity);
+
+            _patientDal.Update(patient);
+        }
+
+        [AuthorizationAspect(Roles = "patient")]
+        [ValidationAspect(typeof(PatientUpdateContactInfoDtoValidator))]
+        public void UpdateContactInfo(PatientUpdateContactInfoDto patientUpdateContactInfoDto)
+        {
+            var patientEntity = _patientDal.Get(x => x.Id == patientUpdateContactInfoDto.Id);
+            var patient = MapperTool<MapperType>.Map<PatientUpdateContactInfoDto, Patient>(patientUpdateContactInfoDto, patientEntity);
+
+            _patientDal.Update(patient);
+        }
+
+        [AuthorizationAspect(Roles = "patient")]
+        [ValidationAspect(typeof(PatientUpdatePasswordDtoValidator))]
+        public void UpdatePassword(PatientUpdatePasswordDto patientUpdatePasswordDto)
+        {
+            var patientEntity = _patientDal.Get(x => x.Id == patientUpdatePasswordDto.Id);
+            if (patientEntity.Password != Crypto.Hash(patientUpdatePasswordDto.Password, "MD5"))
+                throw new ErrorInformation("Şifre hatalı");
+            patientUpdatePasswordDto.Password = Crypto.Hash(patientUpdatePasswordDto.NewPassword, "MD5");
+            var patient = MapperTool<MapperType>.Map<PatientUpdatePasswordDto, Patient>(patientUpdatePasswordDto, patientEntity);
+
+            _patientDal.Update(patient);
+        }
     }
 }

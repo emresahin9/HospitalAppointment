@@ -1,0 +1,13 @@
+﻿@model string
+
+<ul class="nav nav-tabs nav-justified mb-3 shadow bg-light">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link py-3 text-dark@(Model == "PersonalInfo" ? " active" : "")" href="/Patient/Home/UpdatePersonalInfo" aria-selected="@(Model == "PersonalInfo" ? "true" : "false")">Kişisel Bilgiler</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link py-3 text-dark@(Model == "ContactInfo" ? " active" : "")" href="/Patient/Home/UpdateContactInfo" aria-selected="@(Model == "ContactInfo" ? "true" : "false")">İletişim Bilgileri</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link py-3 text-dark@(Model == "Password" ? " active" : "")" href="/Patient/Home/UpdatePassword" aria-selected="@(Model == "Password" ? "true" : "false")">Şifre</a>
+    </li>
+</ul>

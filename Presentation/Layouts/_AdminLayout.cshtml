@@ -13,16 +13,18 @@
 </head>
 <body>
     <header class="p-3 bg-dark text-white">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="/Admin/Home/Index" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 text-white text-decoration-none">
-                    <i class="fa fa-hospital-o fa-2x"></i>
-                </a>
-                <div class="text-end">
-                    <span class="px-2 me-3 text-light"><b>Yönetici</b> @User.Identity.Name</span>
-                    <a href="/Doctor/Auth/Login" type="button" class="btn btn-outline-light me-2">Doktor Girişi</a>
-                    <a href="/Admin/Auth/Logout" type="button" class="btn btn-outline-light me-2">Çıkış Yap</a>
-                </div>
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/Admin/Home/Index" class="nav col-12 col-lg-auto ms-5 me-lg-auto mb-3 justify-content-center mb-md-0 text-white text-decoration-none">
+                <i class="fa fa-hospital-o fa-2x"></i>
+            </a>
+            <div class="text-end">
+                <span class="px-3 py-2 me-3 m-1 text-light d-inline-flex align-items-center rounded-pill bg-opacity-25 bg-light">
+                    <i class="fa fa-user-circle me-2"></i>
+                    <span class="fw-bold me-1">Yönetici:</span>
+                    <span>@User.Identity.Name</span>
+                </span>
+                <a href="/Doctor/Auth/Login" type="button" class="btn btn-outline-light me-2 m-1">Doktor Girişi</a>
+                <a href="/Admin/Auth/Logout" type="button" class="btn btn-outline-light me-2 m-1">Çıkış Yap</a>
             </div>
         </div>
     </header>
@@ -38,7 +40,7 @@
             </div>
             <div class="offcanvas-body p-3" style="width: 280px;">
                 <a href="/Admin/Home/Index" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-                    <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap" /></svg>
+                    <i class="fa fa-home fa-lg me-2"></i>
                     <span class="fs-5 fw-semibold">Anasayfa</span>
                 </a>
                 <ul class="list-unstyled ps-0">
@@ -48,8 +50,14 @@
                         </button>
                         <div class="collapse show" id="home-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="@Url.Action("MedicalSpecialties", "Home", new { Area = "Admin" })" class="link-dark rounded">Branşlar Listesi</a></li>
-                                <li><a href="@Url.Action("AddMedicalSpecialty", "Home", new { Area = "Admin" })" class="link-dark rounded">Branş Ekle</a></li>
+                                <li>
+                                    <i class="fa fa-stethoscope ms-2"></i>
+                                    <a href="@Url.Action("MedicalSpecialties", "Home", new { Area = "Admin" })" class="link-dark rounded m-auto">Branşlar Listesi</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-plus ms-2"></i>
+                                    <a href="@Url.Action("AddMedicalSpecialty", "Home", new { Area = "Admin" })" class="link-dark rounded m-auto">Branş Ekle</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -59,19 +67,28 @@
                         </button>
                         <div class="collapse show" id="dashboard-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="@Url.Action("Doctors", "Home", new { Area = "Admin" })" class="link-dark rounded">Doktorlar Listesi</a></li>
-                                <li><a href="@Url.Action("AddDoctor", "Home", new { Area = "Admin" })" class="link-dark rounded">Doktor Ekle</a></li>
+                                <li>
+                                    <i class="fa fa-user-md ms-2"></i>
+                                    <a href="@Url.Action("Doctors", "Home", new { Area = "Admin" })" class="link-dark rounded m-auto">Doktorlar Listesi</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-user-plus ms-2"></i>
+                                    <a href="@Url.Action("AddDoctor", "Home", new { Area = "Admin" })" class="link-dark rounded m-auto">Doktor Ekle</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
                     <li class="border-top my-3"></li>
                     <li class="mb-1">
-                        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="true">
                             Hesap
                         </button>
-                        <div class="collapse" id="account-collapse">
+                        <div class="collapse show" id="account-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="/Admin/Auth/Logout" class="link-dark rounded">Çıkış Yap</a></li>
+                                <li>
+                                    <i class="fa fa-sign-out ms-2"></i>
+                                    <a href="/Admin/Auth/Logout" class="link-dark rounded m-auto">Çıkış Yap</a>
+                                </li>
                             </ul>
                         </div>
                     </li>

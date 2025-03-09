@@ -3,35 +3,40 @@
     Layout = "~/Layouts/_AdminLayout.cshtml";
 }
 
-<section class="container m-3">
-    <h4>Doktor Ekleme Sayfası</h4>
-    <form method="POST" style="max-width: 700px;" class="mt-4">
-        <div class="mb-3">
-            <label class="form-label">Adı</label>
-            <input asp-for="Name" type="text" class="form-control">
-            <span class="small text-danger" asp-validation-for="Name"></span>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Soyadı</label>
-            <input asp-for="Surname" type="text" class="form-control">
-            <span class="small text-danger" asp-validation-for="Surname"></span>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Eposta Adresi</label>
-            <input asp-for="Email" type="email" class="form-control">
-            <span class="small text-danger" asp-validation-for="Email"></span>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Branş</label>
-            <select asp-for="MedicalSpecialtyId" class="form-select" aria-label="Default select example">
-                <option value="@null">-Seçiniz-</option>
-                @foreach (var item in TempData["MedicalSpecialties"] as List<MedicalSpecialtyDto>)
-                {
-                    <option value="@item.Id">@item.Name</option>
-                }
-            </select>
-            <span class="small text-danger" asp-validation-for="MedicalSpecialtyId"></span>
-        </div>
-        <button type="submit" class="btn btn-outline-secondary">Kaydet</button>
-    </form>
+<section class="container">
+    <h4 class="m-4">Doktor Ekleme Sayfası</h4>
+    <hr />
+    <div class="d-flex justify-content-center">
+        <form method="POST" class="mt-2 col-12 col-md-9 col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Adı</label>
+                <input asp-for="Name" type="text" class="form-control">
+                <span class="small text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Soyadı</label>
+                <input asp-for="Surname" type="text" class="form-control">
+                <span class="small text-danger" asp-validation-for="Surname"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Eposta Adresi</label>
+                <input asp-for="Email" type="email" class="form-control">
+                <span class="small text-danger" asp-validation-for="Email"></span>
+            </div>
+            <div>
+                <label class="form-label">Branş</label>
+                <select asp-for="MedicalSpecialtyId" class="form-select" aria-label="Default select example">
+                    <option value="@null">-Seçiniz-</option>
+                    @foreach (var item in TempData["MedicalSpecialties"] as List<MedicalSpecialtyDto>)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+                <span class="small text-danger" asp-validation-for="MedicalSpecialtyId"></span>
+            </div>
+            <div class="mt-5 d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Ekle</button>
+            </div>
+        </form>
+    </div>
 </section>
